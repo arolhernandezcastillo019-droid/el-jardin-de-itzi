@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>El jardín de Itzi</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background: #07152f;
+        }
+
+
+        /* ============================= */
+        /*           CIELO                 */
+        /* ============================= */
+
+        .cielo {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(55, 90, 180, 0.35),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    to bottom,
+                    #07143b 0%,
+                    #10255d 35%,
+                    #172d68 55%,
+                    #0b1b35 100%
+                );
+        }
+
+
+        /* ============================= */
+        /*      REMOLINOS DEL CIELO       */
+        /* ============================= */
+
+        .cielo::before {
+            content: "";
+
+            position: absolute;
+
+            width: 650px;
+            height: 300px;
+
+            top: 8%;
+            left: -100px;
+
+            border: 18px solid rgba(80, 120, 210, 0.12);
+
+            border-radius: 50%;
+
+            transform: rotate(-18deg);
+
+            box-shadow:
+                80px 40px 0 rgba(70, 110, 200, 0.08),
+                160px 80px 0 rgba(90, 130, 220, 0.06);
+
+            pointer-events: none;
+
+            z-index: 1;
+        }
+
+
+        .cielo::after {
+            content: "";
+
+            position: absolute;
+
+            width: 600px;
+            height: 260px;
+
+            top: 25%;
+            right: -180px;
+
+            border: 16px solid rgba(80, 120, 210, 0.10);
+
+            border-radius: 50%;
+
+            transform: rotate(25deg);
+
+            box-shadow:
+                -80px 40px 0 rgba(70, 110, 200, 0.08),
+                -150px 80px 0 rgba(90, 130, 220, 0.05);
+
+            pointer-events: none;
+
+            z-index: 1;
+        }
+
+
+        /* ============================= */
+        /*             TITULO             */
+        /* ============================= */
+
+        h1 {
+            position: absolute;
+
+            top: 8%;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 100%;
+
+            text-align: center;
+
+            color: #ffe28a;
+
+            font-size: 42px;
+
+            font-weight: normal;
+
+            text-shadow:
+                0 0 10px rgba(255, 216, 107, 0.7),
+                0 0 25px rgba(255, 216, 107, 0.3);
+
+            z-index: 10;
+
+            transition: opacity 2s ease;
+        }
+
+
+        /* ============================= */
+        /*             ESTRELLAS          */
+        /* ============================= */
+
+        .estrella {
+            width: 12px;
+            height: 12px;
+
+            background: #ffd83d;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 10px #ffd83d;
+
+            position: absolute;
+
+            z-index: 2;
+
+            animation: parpadear 2s infinite alternate;
+        }
+
+
+        .estrella::before {
+            content: "";
+
+            position: absolute;
+
+            width: 2px;
+            height: 20px;
+
+            background: #ffd83d;
+
+            top: -4px;
+            left: 5px;
+        }
+
+
+        .estrella::after {
+            content: "";
+
+            position: absolute;
+
+            width: 20px;
+            height: 2px;
+
+            background: #ffd83d;
+
+            top: 5px;
+            left: -4px;
+        }
+
+
+        @keyframes parpadear {
+
+            from {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+
+        }
+
+
+        /* ============================= */
+        /*         ESTRELLA FUGAZ         */
+        /* ============================= */
+
+        .estrella-fugaz {
+            position: absolute;
+
+            width: 8px;
+            height: 8px;
+
+            background: #ffd83d;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 15px #ffd83d;
+
+            top: 15%;
+            left: 70%;
+
+            z-index: 4;
+
+            animation: caer 4s linear 1 forwards;
+        }
+
+
+        .estrella-fugaz::after {
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    #ffd83d
+                );
+
+            left: 5px;
+            top: 3px;
+
+            transform: rotate(-35deg);
+
+            transform-origin: left center;
+        }
+
+
+        @keyframes caer {
+
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(-500px, 350px);
+            }
+
+        }
+
+
+        /* ============================= */
+        /*              JARDÍN            */
+        /* ============================= */
+
+        .jardin {
+            position: absolute;
+
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            height: 30%;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #102d24,
+                    #071812
+                );
+
+            border-top: 2px solid #274d35;
+
+            z-index: 2;
+
+            transition: opacity 2s ease;
+        }
+
+
+        /* ============================= */
+        /*              FLORES             */
+        /* ============================= */
+
+        .flor {
+            position: absolute;
+
+            width: 70px;
+            height: 120px;
+
+            transform-origin: bottom center;
+
+            z-index: 2;
+
+            animation:
+                florecer 2s ease-out forwards;
+        }
+
+
+        @keyframes florecer {
+
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+        }
+
+
+        .tallo {
+            position: absolute;
+
+            width: 8px;
+            height: 80px;
+
+            background: #3b7a3b;
+
+            bottom: 0;
+            left: 31px;
+
+            border-radius: 10px;
+
+            z-index: 1;
+        }
+
+
+        .hoja {
+            position: absolute;
+
+            width: 30px;
+            height: 15px;
+
+            background: #3f8f3f;
+
+            bottom: 30px;
+            left: 8px;
+
+            border-radius:
+                100% 0 100% 0;
+
+            transform: rotate(-25deg);
+
+            transform-origin: right center;
+
+            z-index: 1;
+        }
+
+
+        .petalos {
+            position: absolute;
+
+            width: 70px;
+            height: 70px;
+
+            top: 0;
+            left: 0;
+        }
+
+
+        .petalo {
+            position: absolute;
+
+            width: 28px;
+            height: 28px;
+
+            background: #ffd83d;
+
+            border-radius: 50%;
+        }
+
+
+        .centro {
+            position: absolute;
+
+            width: 25px;
+            height: 25px;
+
+            background: #8c5a19;
+
+            border-radius: 50%;
+
+            top: 22px;
+            left: 23px;
+
+            z-index: 2;
+        }
+
+
+        /* ============================= */
+        /*            TULIPÁN              */
+        /* ============================= */
+
+        .tulipan .petalos {
+            width: 70px;
+            height: 60px;
+
+            top: 0;
+            left: 0;
+        }
+
+
+        .tulipan .petalo {
+            width: 30px;
+            height: 42px;
+
+            background: #b86cff;
+
+            border-radius:
+                50% 50% 45% 45%;
+
+            top: 8px !important;
+            left: 20px !important;
+
+            transform-origin: bottom center;
+        }
+
+
+        .tulipan .petalo:nth-child(1) {
+            transform:
+                translateX(-15px)
+                rotate(-18deg);
+        }
+
+
+        .tulipan .petalo:nth-child(2) {
+            transform:
+                translateY(-4px);
+        }
+
+
+        .tulipan .petalo:nth-child(3) {
+            transform:
+                translateX(15px)
+                rotate(18deg);
+        }
+
+
+        .tulipan .petalo:nth-child(4) {
+            transform:
+                translateY(2px)
+                scale(0.85);
+        }
+
+
+        /* ============================= */
+        /*              LIRIO              */
+        /* ============================= */
+
+        .lirio .petalos {
+            width: 70px;
+            height: 70px;
+
+            top: 0;
+            left: 0;
+        }
+
+
+        .lirio .petalo {
+            width: 22px;
+            height: 42px;
+
+            background: #fff6d5;
+
+            border-radius: 50%;
+
+            top: 10px !important;
+            left: 24px !important;
+
+            transform-origin:
+                center bottom;
+        }
+
+
+        .lirio .petalo:nth-child(1) {
+            transform: rotate(-50deg);
+        }
+
+
+        .lirio .petalo:nth-child(2) {
+            transform: rotate(-18deg);
+        }
+
+
+        .lirio .petalo:nth-child(3) {
+            transform: rotate(18deg);
+        }
+
+
+        .lirio .petalo:nth-child(4) {
+            transform: rotate(50deg);
+        }
+
+
+        /* ============================= */
+        /*           LUCIÉRNAGAS           */
+        /* ============================= */
+
+        .luciernaga {
+            position: absolute;
+
+            width: 5px;
+            height: 5px;
+
+            background: #f8e77b;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 8px #f8e77b;
+
+            z-index: 3;
+
+            animation:
+                brillar 3s ease-in-out infinite alternate;
+        }
+
+
+        @keyframes brillar {
+
+            from {
+                opacity: 0.2;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.4);
+            }
+
+        }
+
+
+        /* ============================= */
+        /*          MENSAJE FINAL          */
+        /* ============================= */
+
+        .mensaje-final {
+            position: absolute;
+
+            z-index: 20;
+
+            width: 80%;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(-50%, -50%)
+                scale(0.7);
+
+            text-align: center;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+
+        .mensaje-final h2 {
+            margin: 0;
+
+            color: #ffd86b;
+
+            font-size: 48px;
+
+            font-weight: normal;
+
+            text-shadow:
+                0 0 15px #ffd86b;
+        }
+
+
+        .mensaje-final .fecha {
+            margin-top: 10px;
+
+            color: #ffffff;
+
+            font-size: 20px;
+        }
+
+
+        .mensaje-final .frase {
+            margin: 18px auto;
+
+            max-width: 700px;
+
+            color: #f5f0ff;
+
+            font-size: 20px;
+
+            line-height: 1.6;
+
+            text-shadow:
+                0 0 8px rgba(255,255,255,0.15);
+        }
+
+
+        .mensaje-final .frase.especial {
+            color: #ffd86b;
+
+            font-size: 23px;
+
+            margin-top: 30px;
+
+            text-shadow:
+                0 0 12px #ffd86b;
+        }
+
+
+        .mensaje-final .firma {
+            color: #ffd86b;
+
+            font-size: 20px;
+
+            font-style: italic;
+        }
+
+
+        .mensaje-final.visible {
+            opacity: 1;
+
+            transform:
+                translate(-50%, -50%)
+                scale(1);
+        }
+
+
+        /* ============================= */
+        /*        VERSIÓN CELULAR         */
+        /* ============================= */
+
+        @media (max-width: 600px) {
+
+            .mensaje-final {
+                width: 88%;
+
+                max-height: 85vh;
+
+                overflow-y: auto;
+
+                padding: 10px;
+            }
+
+
+            .mensaje-final h2 {
+                font-size: 34px;
+            }
+
+
+            .mensaje-final .fecha {
+                font-size: 17px;
+            }
+
+
+            .mensaje-final .frase {
+                font-size: 17px;
+
+                line-height: 1.5;
+
+                margin: 14px auto;
+            }
+
+
+            .mensaje-final .frase.especial {
+                font-size: 19px;
+            }
+
+
+            .mensaje-final .firma {
+                font-size: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ============================= -->
+    <!--             CIELO              -->
+    <!-- ============================= -->
+
+    <div class="cielo">
+
+
+        <h1>
+            El jardín de Itzi
+        </h1>
+
+
+        <!-- ============================= -->
+        <!--         MENSAJE FINAL          -->
+        <!-- ============================= -->
+
+       <div class="mensaje-final">
+
+    <h2>
+        Para Itzi 💛
+    </h2>
+
+    <p class="fecha">
+        21 de septiembre
+    </p>
+
+    <p class="frase">
+        Feliz día de las Flores Amarillas 💛
+    </p>
+
+    <p class="frase especial">
+        Si pudiera guardar en flores todo lo bonito que me haces sentir,
+        este jardín nunca terminaría de florecer.
+    </p>
+
+    <p class="firma">
+        — Arol
+    </p>
+
+</div>
+        </div>
+
+
+        <!-- ============================= -->
+        <!--            JARDÍN             -->
+        <!-- ============================= -->
+
+        <div class="jardin"></div>
+
+    </div>
+
+
+    <script>
+
+
+        /* ============================= */
+        /*             CIELO              */
+        /* ============================= */
+
+        const cielo =
+            document.querySelector(".cielo");
+
+
+        /* ============================= */
+        /*          28 ESTRELLAS           */
+        /* ============================= */
+
+        for (let i = 0; i < 28; i++) {
+
+            const estrella =
+                document.createElement("div");
+
+            estrella.classList.add("estrella");
+
+            estrella.style.top =
+                Math.random() * 65 + "%";
+
+            estrella.style.left =
+                Math.random() * 95 + "%";
+
+            estrella.style.animationDelay =
+                Math.random() * 2 + "s";
+
+            cielo.appendChild(estrella);
+
+        }
+
+
+        /* ============================= */
+        /*        ESTRELLA FUGAZ           */
+        /* ============================= */
+
+        const estrellaFugaz =
+            document.createElement("div");
+
+        estrellaFugaz.classList.add(
+            "estrella-fugaz"
+        );
+
+        /* 29 de mayo */
+
+        estrellaFugaz.dataset.fecha =
+            "29 de mayo";
+
+        cielo.appendChild(
+            estrellaFugaz
+        );
+
+
+        /* ============================= */
+        /*          24 FLORES              */
+        /* ============================= */
+
+        for (let i = 0; i < 24; i++) {
+
+            const flor =
+                document.createElement("div");
+
+            flor.classList.add("flor");
+
+
+            /* Tamaño diferente */
+
+            const tamaño =
+                0.8 + Math.random() * 0.4;
+
+            flor.style.scale =
+                tamaño;
+
+
+            flor.style.zIndex =
+                Math.floor(tamaño * 10);
+
+
+            /* Aparición progresiva */
+
+            flor.style.animationDelay =
+                (i * 0.08) + "s";
+
+
+            /* Posiciones naturales */
+
+            const posiciones = [
+
+                [3, 8],
+                [15, 25],
+                [27, 12],
+                [39, 32],
+
+                [51, 7],
+                [63, 22],
+                [76, 10],
+                [89, 30],
+
+                [8, 42],
+                [20, 55],
+                [34, 46],
+                [47, 62],
+
+                [59, 48],
+                [71, 58],
+                [84, 44],
+                [94, 55],
+
+                [4, 72],
+                [17, 82],
+                [30, 68],
+                [44, 88],
+
+                [57, 74],
+                [69, 92],
+                [82, 70],
+                [93, 84]
+
+            ];
+
+
+            flor.style.left =
+                posiciones[i][0] + "%";
+
+
+            flor.style.bottom =
+                posiciones[i][1] + "px";
+
+
+            /* Tulipán */
+
+            if (i === 7) {
+
+                flor.classList.add(
+                    "tulipan"
+                );
+
+            }
+
+
+            /* Lirio */
+
+            if (i === 18) {
+
+                flor.classList.add(
+                    "lirio"
+                );
+
+            }
+
+
+            /* Tallo */
+
+            const tallo =
+                document.createElement("div");
+
+            tallo.classList.add(
+                "tallo"
+            );
+
+
+            /* Hoja */
+
+            const hoja =
+                document.createElement("div");
+
+            hoja.classList.add(
+                "hoja"
+            );
+
+
+            /* Pétalos */
+
+            const petalos =
+                document.createElement("div");
+
+            petalos.classList.add(
+                "petalos"
+            );
+
+
+            const posicionesPetalos = [
+
+                ["0", "21px"],
+                ["21px", "0"],
+                ["21px", "42px"],
+                ["42px", "21px"]
+
+            ];
+
+
+            for (let j = 0; j < 4; j++) {
+
+                const petalo =
+                    document.createElement("div");
+
+                petalo.classList.add(
+                    "petalo"
+                );
+
+
+                petalo.style.top =
+                    posicionesPetalos[j][0];
+
+
+                petalo.style.left =
+                    posicionesPetalos[j][1];
+
+
+                petalos.appendChild(
+                    petalo
+                );
+
+            }
+
+
+            /* Centro */
+
+            const centro =
+                document.createElement("div");
+
+            centro.classList.add(
+                "centro"
+            );
+
+
+            petalos.appendChild(
+                centro
+            );
+
+
+            /* Construcción de la flor */
+
+            flor.appendChild(
+                tallo
+            );
+
+            flor.appendChild(
+                hoja
+            );
+
+            flor.appendChild(
+                petalos
+            );
+
+
+            document
+                .querySelector(".jardin")
+                .appendChild(flor);
+
+        }
+
+
+        /* ============================= */
+        /*          20 LUCIÉRNAGAS        */
+        /* ============================= */
+
+        for (let i = 0; i < 20; i++) {
+
+            const luciernaga =
+                document.createElement("div");
+
+            luciernaga.classList.add(
+                "luciernaga"
+            );
+
+
+            luciernaga.style.left =
+                Math.random() * 95 + "%";
+
+
+            luciernaga.style.bottom =
+                Math.random() * 75 + "px";
+
+
+            luciernaga.style.animationDelay =
+                Math.random() * 3 + "s";
+
+
+            document
+                .querySelector(".jardin")
+                .appendChild(
+                    luciernaga
+                );
+
+        }
+
+
+        /* ============================= */
+        /*       FINAL DE LA ESTRELLA     */
+        /* ============================= */
+
+        estrellaFugaz.addEventListener(
+            "animationend",
+            function () {
+
+                const mensaje =
+                    document.querySelector(
+                        ".mensaje-final"
+                    );
+
+
+                const titulo =
+                    document.querySelector(
+                        "h1"
+                    );
+
+
+                mensaje.classList.add(
+                    "visible"
+                );
+
+
+                titulo.style.opacity =
+                    "0";
+
+            }
+        );
+
+
+    </script>
+
+</body>
+
+</html>
